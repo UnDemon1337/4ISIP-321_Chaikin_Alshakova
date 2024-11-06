@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\01.10_Work_with_buffer2\\Cursor\\Cursor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C0852AB3-E3D2-4A13-8763-30F90284F086}|Cursor.vcxproj|C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\01.10_Work_with_buffer2\\Cursor\\Cursor\\Cursor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C0852AB3-E3D2-4A13-8763-30F90284F086}|Cursor.vcxproj|solutionrelative:Cursor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 214,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Cursor.cpp",
+              "DocumentMoniker": "C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\01.10_Work_with_buffer2\\Cursor\\Cursor\\Cursor.cpp",
+              "RelativeDocumentMoniker": "Cursor.cpp",
+              "ToolTip": "C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\01.10_Work_with_buffer2\\Cursor\\Cursor\\Cursor.cpp",
+              "RelativeToolTip": "Cursor.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-06T11:50:40.1Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

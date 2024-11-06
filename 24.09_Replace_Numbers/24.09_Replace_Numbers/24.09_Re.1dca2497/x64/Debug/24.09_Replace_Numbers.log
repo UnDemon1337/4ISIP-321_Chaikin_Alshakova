@@ -1,0 +1,3 @@
+﻿  24.09_Replace_Numbers.cpp
+C:\Users\chaik\source\repos\4ISIP-321_Chaikin_Alshakova\24.09_Replace_Numbers\24.09_Replace_Numbers\24.09_Replace_Numbers.cpp(42,25): warning C4244: return: преобразование "__int64" в "int", возможна потеря данных
+  24.09_Replace_Numbers.vcxproj -> C:\Users\chaik\source\repos\4ISIP-321_Chaikin_Alshakova\24.09_Replace_Numbers\24.09_Replace_Numbers\x64\Debug\24.09_Replace_Numbers.exe

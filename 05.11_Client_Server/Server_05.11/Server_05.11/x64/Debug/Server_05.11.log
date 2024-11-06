@@ -1,0 +1,4 @@
+﻿  Server_05.11.cpp
+C:\Users\chaik\source\repos\4ISIP-321_Chaikin_Alshakova\05.11_Client_Server\Server_05.11\Server_05.11\Server_05.11.cpp(111,74): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\chaik\source\repos\4ISIP-321_Chaikin_Alshakova\05.11_Client_Server\Server_05.11\Server_05.11\Server_05.11.cpp(129,63): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Server_05.11.vcxproj -> C:\Users\chaik\source\repos\4ISIP-321_Chaikin_Alshakova\05.11_Client_Server\Server_05.11\x64\Debug\Server_05.11.exe

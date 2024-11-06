@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\24.09_ASCII_to_Unicode\\24.09_ASCII_to_Unicode\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1D0C3015-0201-4DFC-9887-2065CAFD229D}|24.09_ASCII_to_Unicode.vcxproj|C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\24.09_ASCII_to_Unicode\\24.09_ASCII_to_Unicode\\24.09_ASCII_to_Unicode.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1D0C3015-0201-4DFC-9887-2065CAFD229D}|24.09_ASCII_to_Unicode.vcxproj|solutionrelative:24.09_ASCII_to_Unicode.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 134,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "24.09_ASCII_to_Unicode.cpp",
+              "DocumentMoniker": "C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\24.09_ASCII_to_Unicode\\24.09_ASCII_to_Unicode\\24.09_ASCII_to_Unicode.cpp",
+              "RelativeDocumentMoniker": "24.09_ASCII_to_Unicode.cpp",
+              "ToolTip": "C:\\Users\\chaik\\source\\repos\\4ISIP-321_Chaikin_Alshakova\\24.09_ASCII_to_Unicode\\24.09_ASCII_to_Unicode\\24.09_ASCII_to_Unicode.cpp",
+              "RelativeToolTip": "24.09_ASCII_to_Unicode.cpp",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADwAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-05T12:15:17.968Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
