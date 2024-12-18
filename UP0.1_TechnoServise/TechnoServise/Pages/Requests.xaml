@@ -1,0 +1,50 @@
+﻿<Page x:Class="TechnoServise.Pages.Requests"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TechnoServise.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Requests" Background="White" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+            <Button x:Name="Add" Content="Добавить" Grid.Row="2" Height="40" Margin="10,0,0,0" Style="{StaticResource CustomButton}" Width="100" Click="Add_Click"/>
+            <Label Content="Введите номер" Style="{StaticResource AddLabel}"/>
+            <TextBox Name="FindForNumber" Style="{StaticResource AddTextBox}" Width="40" Margin="0,0,0,0" TextChanged="FindForNumber_TextChanged"/>
+            <Label Content="Выберите статус" Style="{StaticResource AddLabel}"/>
+            <ComboBox Name="FindForStatus" Style="{StaticResource AddComboBox}" Width="100" Margin="0,0,0,0" SelectionChanged="FindForStatus_SelectionChanged"/>
+            <Label Content="Выберите приоритет" Style="{StaticResource AddLabel}"/>
+            <ComboBox Name="FindForPriority" Style="{StaticResource AddComboBox}" Width="100" Margin="0,0,15,0" SelectionChanged="FindForPriority_SelectionChanged"/>
+            <Button Name="ClearFilters" Content="Очистить" Style="{StaticResource CustomButton}" Margin="0,0,10,0" Width="70" Height="30" Click="ClearFilters_Click"/>
+        </StackPanel>
+        <DataGrid x:Name="DataGridRequests" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заявки" Binding="{Binding request_id}"/>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding date_created}"/>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding date_ended}"/>
+                <DataGridTextColumn Header="Инструмент" Binding="{Binding Equipment.description}"/>
+                <DataGridTextColumn Header="Тип неисправности" Binding="{Binding FaultType.description}"/>
+                <DataGridTextColumn Header="Описание проблемы" Binding="{Binding problem_description}"/>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Client.client_surname}"/>
+                <DataGridTextColumn Header="Специалист" Binding="{Binding Technician.technician_surname}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status.status_name}"/>
+                <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority.priority_name}"/>
+                <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="Edit" Content="Редактировать" Style="{StaticResource CustomButton}" Click="Edit_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+    
+</Page>

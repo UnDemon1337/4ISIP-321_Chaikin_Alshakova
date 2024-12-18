@@ -1,0 +1,655 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TechnoServiceModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="client_surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="client_secondName" Type="nvarchar" MaxLength="100" />
+          <Property Name="contact_info" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="equipment_id" />
+          </Key>
+          <Property Name="equipment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serial_number" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FaultType">
+          <Key>
+            <PropertyRef Name="fault_type_id" />
+          </Key>
+          <Property Name="fault_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="priority_id" />
+          </Key>
+          <Property Name="priority_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priority_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="request_id" />
+          </Key>
+          <Property Name="request_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="date_ended" Type="datetime" />
+          <Property Name="equipment_id" Type="int" />
+          <Property Name="fault_type_id" Type="int" />
+          <Property Name="problem_description" Type="nvarchar" MaxLength="255" />
+          <Property Name="client_id" Type="int" />
+          <Property Name="technician_id" Type="int" />
+          <Property Name="status_id" Type="int" />
+          <Property Name="priority_id" Type="int" />
+        </EntityType>
+        <EntityType Name="RequestLog">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="request_id" Type="int" />
+          <Property Name="date_changed" Type="datetime" />
+          <Property Name="comment" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Technician">
+          <Key>
+            <PropertyRef Name="technician_id" />
+          </Key>
+          <Property Name="technician_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="technician_surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="technician_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="technician_secondName" Type="nvarchar" MaxLength="100" />
+          <Property Name="position_id" Type="int" />
+          <Property Name="contact_info" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TechnicianID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Request__client___4AB81AF0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__equipme__48CFD27E">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="equipment_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="equipment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__fault_t__49C3F6B7">
+          <End Role="FaultType" Type="Self.FaultType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaultType">
+              <PropertyRef Name="fault_type_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="fault_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__priorit__4D94879B">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="priority_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="priority_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__status___4CA06362">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__technic__4BAC3F29">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="technician_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="technician_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RequestLo__reque__5070F446">
+          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="RequestLog" Type="Self.RequestLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="request_id" />
+            </Principal>
+            <Dependent Role="RequestLog">
+              <PropertyRef Name="request_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Technicia__posit__4316F928">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Technician" Type="Self.Technician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Technician">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__Technicia__45F365D3">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="technician_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="TechnicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TechnoServiceModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaultType" EntityType="Self.FaultType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestLog" EntityType="Self.RequestLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Technician" EntityType="Self.Technician" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Request__client___4AB81AF0" Association="Self.FK__Request__client___4AB81AF0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__equipme__48CFD27E" Association="Self.FK__Request__equipme__48CFD27E">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__fault_t__49C3F6B7" Association="Self.FK__Request__fault_t__49C3F6B7">
+            <End Role="FaultType" EntitySet="FaultType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__priorit__4D94879B" Association="Self.FK__Request__priorit__4D94879B">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__status___4CA06362" Association="Self.FK__Request__status___4CA06362">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__technic__4BAC3F29" Association="Self.FK__Request__technic__4BAC3F29">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RequestLo__reque__5070F446" Association="Self.FK__RequestLo__reque__5070F446">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="RequestLog" EntitySet="RequestLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Technicia__posit__4316F928" Association="Self.FK__Technicia__posit__4316F928">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Technician" EntitySet="Technician" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__Technicia__45F365D3" Association="Self.FK__Users__Technicia__45F365D3">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TechnoServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="client_surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="client_secondName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contact_info" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__client___4AB81AF0" FromRole="Client" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="equipment_id" />
+          </Key>
+          <Property Name="equipment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serial_number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__equipme__48CFD27E" FromRole="Equipment" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="FaultType">
+          <Key>
+            <PropertyRef Name="fault_type_id" />
+          </Key>
+          <Property Name="fault_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__fault_t__49C3F6B7" FromRole="FaultType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK__Technicia__posit__4316F928" FromRole="Position" ToRole="Technician" />
+        </EntityType>
+        <EntityType Name="Priority">
+          <Key>
+            <PropertyRef Name="priority_id" />
+          </Key>
+          <Property Name="priority_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priority_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__priorit__4D94879B" FromRole="Priority" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="request_id" />
+          </Key>
+          <Property Name="request_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="date_ended" Type="DateTime" Precision="3" />
+          <Property Name="equipment_id" Type="Int32" />
+          <Property Name="fault_type_id" Type="Int32" />
+          <Property Name="problem_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="client_id" Type="Int32" />
+          <Property Name="technician_id" Type="Int32" />
+          <Property Name="status_id" Type="Int32" />
+          <Property Name="priority_id" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Request__client___4AB81AF0" FromRole="Request" ToRole="Client" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK__Request__equipme__48CFD27E" FromRole="Request" ToRole="Equipment" />
+          <NavigationProperty Name="FaultType" Relationship="Self.FK__Request__fault_t__49C3F6B7" FromRole="Request" ToRole="FaultType" />
+          <NavigationProperty Name="Priority" Relationship="Self.FK__Request__priorit__4D94879B" FromRole="Request" ToRole="Priority" />
+          <NavigationProperty Name="Status" Relationship="Self.FK__Request__status___4CA06362" FromRole="Request" ToRole="Status" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK__Request__technic__4BAC3F29" FromRole="Request" ToRole="Technician" />
+          <NavigationProperty Name="RequestLog" Relationship="Self.FK__RequestLo__reque__5070F446" FromRole="Request" ToRole="RequestLog" />
+        </EntityType>
+        <EntityType Name="RequestLog">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="request_id" Type="Int32" />
+          <Property Name="date_changed" Type="DateTime" Precision="3" />
+          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__RequestLo__reque__5070F446" FromRole="RequestLog" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__status___4CA06362" FromRole="Status" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Technician">
+          <Key>
+            <PropertyRef Name="technician_id" />
+          </Key>
+          <Property Name="technician_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="technician_surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="technician_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="technician_secondName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="position_id" Type="Int32" />
+          <Property Name="contact_info" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Position" Relationship="Self.FK__Technicia__posit__4316F928" FromRole="Technician" ToRole="Position" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__technic__4BAC3F29" FromRole="Technician" ToRole="Request" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__Technicia__45F365D3" FromRole="Technician" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TechnicianID" Type="Int32" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK__Users__Technicia__45F365D3" FromRole="Users" ToRole="Technician" />
+        </EntityType>
+        <Association Name="FK__Request__client___4AB81AF0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__equipme__48CFD27E">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="equipment_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="equipment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__fault_t__49C3F6B7">
+          <End Role="FaultType" Type="Self.FaultType" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaultType">
+              <PropertyRef Name="fault_type_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="fault_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Technicia__posit__4316F928">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Technician" Type="Self.Technician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Technician">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__priorit__4D94879B">
+          <End Role="Priority" Type="Self.Priority" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Priority">
+              <PropertyRef Name="priority_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="priority_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__status___4CA06362">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__technic__4BAC3F29">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="technician_id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="technician_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RequestLo__reque__5070F446">
+          <End Role="Request" Type="Self.Request" Multiplicity="0..1" />
+          <End Role="RequestLog" Type="Self.RequestLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="request_id" />
+            </Principal>
+            <Dependent Role="RequestLog">
+              <PropertyRef Name="request_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__Technicia__45F365D3">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="technician_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="TechnicianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TechnoServiceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="FaultType" EntityType="Self.FaultType" />
+          <EntitySet Name="Position" EntityType="Self.Position" />
+          <EntitySet Name="Priority" EntityType="Self.Priority" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="RequestLog" EntityType="Self.RequestLog" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Technician" EntityType="Self.Technician" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Request__client___4AB81AF0" Association="Self.FK__Request__client___4AB81AF0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__equipme__48CFD27E" Association="Self.FK__Request__equipme__48CFD27E">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__fault_t__49C3F6B7" Association="Self.FK__Request__fault_t__49C3F6B7">
+            <End Role="FaultType" EntitySet="FaultType" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Technicia__posit__4316F928" Association="Self.FK__Technicia__posit__4316F928">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Technician" EntitySet="Technician" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__priorit__4D94879B" Association="Self.FK__Request__priorit__4D94879B">
+            <End Role="Priority" EntitySet="Priority" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__status___4CA06362" Association="Self.FK__Request__status___4CA06362">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__technic__4BAC3F29" Association="Self.FK__Request__technic__4BAC3F29">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RequestLo__reque__5070F446" Association="Self.FK__RequestLo__reque__5070F446">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="RequestLog" EntitySet="RequestLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__Technicia__45F365D3" Association="Self.FK__Users__Technicia__45F365D3">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TechnoServiceModelContainer" CdmEntityContainer="TechnoServiceEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="client_name" ColumnName="client_name" />
+                <ScalarProperty Name="client_surname" ColumnName="client_surname" />
+                <ScalarProperty Name="client_secondName" ColumnName="client_secondName" />
+                <ScalarProperty Name="contact_info" ColumnName="contact_info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="equipment_id" ColumnName="equipment_id" />
+                <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaultType">
+            <EntityTypeMapping TypeName="TechnoServiceModel.FaultType">
+              <MappingFragment StoreEntitySet="FaultType">
+                <ScalarProperty Name="fault_type_id" ColumnName="fault_type_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="position_name" ColumnName="position_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Priority">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Priority">
+              <MappingFragment StoreEntitySet="Priority">
+                <ScalarProperty Name="priority_id" ColumnName="priority_id" />
+                <ScalarProperty Name="priority_name" ColumnName="priority_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="request_id" ColumnName="request_id" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="date_ended" ColumnName="date_ended" />
+                <ScalarProperty Name="equipment_id" ColumnName="equipment_id" />
+                <ScalarProperty Name="fault_type_id" ColumnName="fault_type_id" />
+                <ScalarProperty Name="problem_description" ColumnName="problem_description" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="technician_id" ColumnName="technician_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="priority_id" ColumnName="priority_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestLog">
+            <EntityTypeMapping TypeName="TechnoServiceModel.RequestLog">
+              <MappingFragment StoreEntitySet="RequestLog">
+                <ScalarProperty Name="log_id" ColumnName="log_id" />
+                <ScalarProperty Name="request_id" ColumnName="request_id" />
+                <ScalarProperty Name="date_changed" ColumnName="date_changed" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="status_name" ColumnName="status_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Technician">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Technician">
+              <MappingFragment StoreEntitySet="Technician">
+                <ScalarProperty Name="technician_id" ColumnName="technician_id" />
+                <ScalarProperty Name="technician_surname" ColumnName="technician_surname" />
+                <ScalarProperty Name="technician_name" ColumnName="technician_name" />
+                <ScalarProperty Name="technician_secondName" ColumnName="technician_secondName" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="contact_info" ColumnName="contact_info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TechnoServiceModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TechnicianID" ColumnName="TechnicianID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

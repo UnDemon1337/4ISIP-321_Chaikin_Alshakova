@@ -1,0 +1,24 @@
+﻿<Window x:Class="TechnoServise.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TechnoServise"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/AuthorizePage.xaml" Navigated="OnNavigated" NavigationUIVisibility="Hidden"/>
+        <StackPanel x:Name="MenuContainer" Orientation="Horizontal" Style="{StaticResource CustomStackPanel}" HorizontalAlignment="Center">
+            <Button x:Name="GoBack" Content="Выйти" Style="{StaticResource CustomButton}" Width="125" Height="30" Margin="0,0,0,0" Click="GoBack_Click"/>
+            <Button x:Name="Requests" Content="Заявки" Style="{StaticResource CustomButton}" Width="125" Margin="30,0,0,0" Click="Requests_Click"/>
+            <Button x:Name="RequestsLog" Content="Логи измений заявок" Style="{StaticResource CustomButton}" Width="125" Margin="30,0,0,0" Click="RequestsLog_Click"/>
+            <Button x:Name="Reports" Content="Отчеты" Style="{StaticResource CustomButton}" Width="125" Margin="30,0,0,0" Click="Reports_Click"/>
+            <Button x:Name="QR" Content="QR-код" Style="{StaticResource CustomButton}" Width="125" Margin="30,0,0,0" Click="QR_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿<Page x:Class="TechnoServise.Pages.QRViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TechnoServise.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="QRViewPage" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Место для отображения QR-кода -->
+        <StackPanel Grid.Row="1" Style="{StaticResource CustomStackPanel}">
+            <Image x:Name="QRCodeImage" Grid.Row="1" Stretch="None"/>
+            <Separator Opacity="0" Height="15"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>

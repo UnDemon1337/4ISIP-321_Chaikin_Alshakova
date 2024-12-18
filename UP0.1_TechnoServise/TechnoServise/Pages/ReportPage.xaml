@@ -1,0 +1,58 @@
+﻿<Page x:Class="TechnoServise.Pages.ReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TechnoServise.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ReportPage" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="QuantityCompletedRequestsButton"
+                Content="Количество выполненных заявок"
+                Style="{StaticResource CustomButton}"
+                Click="QuantityCompletedRequestsButton_Click"
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="40"/>
+            <Button x:Name="AVGTimeCompletedRequestsButton"
+                    Content="Среднее время выполнения заявки"
+                    Style="{StaticResource CustomButton}"
+                    Click="AVGTimeCompletedRequestsButton_Click"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="40"/>
+            <Button x:Name="StatisticsOnTypesOfFaultsButton"
+                    Content="Статистика по типам неисправностей"
+                    Style="{StaticResource CustomButton}"
+                    Click="StatisticsOnTypesOfFaultsButton_Click"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="40"/>
+        
+        <Label x:Name="QuantityCompletedRequestsLabel" Style="{StaticResource AddLabel}" Grid.Row="2"  Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <Label x:Name="AVGTimeCompletedRequestsLabel" Style="{StaticResource AddLabel}" Grid.Row="2"  Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+
+        <StackPanel x:Name="StatisticsLabelsContainer" Style="{StaticResource CustomStackPanel}" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+    </Grid>
+
+</Page>

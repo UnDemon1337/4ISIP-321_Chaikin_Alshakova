@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnoServise", "TechnoServise\TechnoServise.csproj", "{33719C70-7057-4B21-8778-B614E76B7553}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33719C70-7057-4B21-8778-B614E76B7553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33719C70-7057-4B21-8778-B614E76B7553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33719C70-7057-4B21-8778-B614E76B7553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33719C70-7057-4B21-8778-B614E76B7553}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {321490A8-BAD8-474A-BCFA-A28E5D817A6D}
+	EndGlobalSection
+EndGlobal
